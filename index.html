@@ -1,0 +1,881 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Mechanical engineering portfolio of Sujee Rubio, Northwestern University.">
+<title>Sujee Rubio Portfolio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500..800&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap">
+<style>
+/* Layout: clean single-column portfolio. Intro with photo, project tiles with filters, experience logos that open a detail page, skills. White page, navy text, one blue accent. */
+:root {
+  --paper: #ffffff;
+  --tint: #f4f6f9;
+  --ink: #15213a;
+  --muted: #5b677d;
+  --line: #e1e6ee;
+  --accent: #1f4fd8;
+  --accent-ink: #ffffff;
+  --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --step--1: 0.84rem;
+  --step-0: 1.0625rem;
+  --step-1: 1.25rem;
+  --step-2: 1.55rem;
+  --step-3: clamp(1.8rem, 3.6vw, 2.4rem);
+  --step-4: clamp(2.3rem, 5.4vw, 3.6rem);
+  --radius: 10px;
+  --maxw: 1120px;
+  color-scheme: light;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; } }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: var(--step-0); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--paper); }
+img { max-width: 100%; display: block; }
+a { color: var(--accent); text-underline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.15; text-wrap: balance; margin: 0; letter-spacing: -0.01em; }
+.label, .eyebrow { font-size: var(--step--1); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin: 0; }
+.wrap { max-width: var(--maxw); margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+
+/* Header */
+.topbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: rgba(255, 255, 255, 0.94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+.topbar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px; flex-wrap: wrap; }
+.brand { font-family: var(--font-display); font-weight: 800; color: var(--ink); text-decoration: none; text-transform: uppercase; letter-spacing: 0.04em; font-size: 0.98rem; }
+.topnav { display: flex; gap: 22px; flex-wrap: wrap; }
+.topnav a { color: var(--muted); text-decoration: none; font-weight: 600; font-size: 0.95rem; }
+.topnav a:hover { color: var(--accent); }
+
+/* Intro */
+.intro { padding-block: clamp(40px, 7vw, 80px) clamp(32px, 5vw, 56px); display: grid; grid-template-columns: auto minmax(0, 1fr); gap: clamp(28px, 5vw, 56px); align-items: center; }
+.photo { width: clamp(180px, 22vw, 240px); aspect-ratio: 1; border-radius: 50%; object-fit: cover; object-position: 50% 22%; border: 4px solid var(--paper); box-shadow: 0 0 0 1px var(--line), 0 12px 32px rgba(21, 33, 58, 0.12); }
+.intro h1 { font-size: var(--step-4); font-weight: 800; }
+.intro p { max-width: 64ch; margin: 14px 0 0; }
+.intro .lede { font-size: var(--step-1); color: var(--ink); }
+.intro strong { font-weight: 700; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; align-items: center; }
+.btn { display: inline-flex; align-items: center; padding: 10px 18px; border-radius: 999px; font-weight: 700; font-size: 0.95rem; text-decoration: none; border: 1.5px solid var(--ink); color: var(--ink); background: transparent; cursor: pointer; }
+.btn.primary { background: var(--ink); color: #fff; }
+.btn:hover { border-color: var(--accent); color: var(--accent); }
+.btn.primary:hover { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.email { display: inline-flex; gap: 8px; align-items: center; flex-wrap: wrap; font-size: 0.95rem; overflow-wrap: anywhere; }
+.copy { border: 1px solid var(--line); background: var(--paper); color: var(--muted); font: inherit; font-size: 0.85rem; padding: 3px 10px; border-radius: 999px; cursor: pointer; }
+
+/* Sections */
+section.block { padding-block: 48px; border-top: 1px solid var(--line); }
+.sec-head { display: flex; justify-content: space-between; align-items: end; gap: 16px; flex-wrap: wrap; margin-bottom: 24px; }
+.sec-head h2 { font-size: var(--step-3); font-weight: 800; }
+.sec-head p { margin: 6px 0 0; color: var(--muted); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font: inherit; font-size: 0.9rem; font-weight: 600; padding: 6px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--paper); color: var(--muted); cursor: pointer; }
+.chip:hover { color: var(--ink); border-color: var(--muted); }
+.chip[aria-pressed="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+/* Project tiles */
+.cards { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: 22px; }
+.card-link { display: flex; flex-direction: column; height: 100%; text-decoration: none; color: inherit; background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; transition: box-shadow .2s, transform .2s; }
+.card-link:hover { transform: translateY(-3px); box-shadow: 0 14px 30px rgba(21, 33, 58, 0.10); }
+.card-img { aspect-ratio: 16 / 10; background: var(--tint); overflow: hidden; }
+.card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
+.card-link:hover .card-img img { transform: scale(1.03); }
+.card-body { padding: 16px 18px 20px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.ctx { margin: 0; font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); font-weight: 700; }
+.card h3 { font-size: var(--step-1); font-weight: 700; }
+.card-sum { margin: 0; color: var(--muted); font-size: 0.97rem; line-height: 1.5; flex: 1; }
+.tags { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.tags li { font-size: 0.8rem; font-weight: 600; padding: 3px 10px; border-radius: 999px; background: var(--tint); color: var(--muted); }
+.tags.big li { font-size: 0.9rem; padding: 5px 12px; }
+.card[hidden] { display: none; }
+
+/* Experience logos */
+.logos { display: flex; flex-wrap: wrap; gap: 18px; }
+.logo-btn { display: grid; gap: 10px; justify-items: center; align-content: center; width: min(100%, 300px); padding: 22px 20px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper); text-decoration: none; color: var(--ink); text-align: center; transition: box-shadow .2s, transform .2s, border-color .2s; }
+.logo-btn:hover { transform: translateY(-3px); border-color: var(--accent); box-shadow: 0 14px 30px rgba(21, 33, 58, 0.10); }
+.logo-btn img { max-height: 64px; width: auto; }
+.logo-text { font-family: var(--font-display); font-weight: 800; font-size: 1.35rem; letter-spacing: 0.02em; text-transform: uppercase; color: var(--ink); }
+.logo-btn small { color: var(--muted); font-size: 0.88rem; }
+.logo-btn .go { color: var(--accent); font-weight: 700; font-size: 0.9rem; }
+.lead { margin-top: 28px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 16px; }
+.lead div { border: 1px solid var(--line); padding: 16px 18px; border-radius: var(--radius); }
+.lead h4 { margin: 6px 0 4px; font-size: 1.05rem; }
+.lead p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+
+/* Skills */
+.skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: 28px; }
+.skill h3 { font-family: var(--font-body); color: var(--ink); }
+.skill ul { list-style: none; padding: 0; margin: 10px 0 0; display: grid; gap: 7px; }
+.skill li { padding-bottom: 7px; border-bottom: 1px solid var(--line); }
+
+footer { border-top: 1px solid var(--line); padding-block: 28px 40px; }
+footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 0.9rem; color: var(--muted); }
+
+/* Detail pages (projects and General Atomics) */
+.project { padding-block: 28px 64px; }
+.back { font-weight: 700; font-size: 0.95rem; text-decoration: none; }
+.tb { margin-top: 16px; display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+.tb-title { padding: clamp(20px, 3vw, 32px); display: grid; gap: 10px; align-content: start; }
+.tb-title .eyebrow { color: var(--accent); }
+.tb-title h2 { font-size: var(--step-3); font-weight: 800; }
+.tb-lede { margin: 4px 0 0; color: var(--muted); max-width: 60ch; }
+.tb-meta { margin: 0; display: grid; background: var(--tint); align-content: start; }
+.tb-meta div { padding: 12px 18px; border-bottom: 1px solid var(--line); }
+.tb-meta div:last-child { border-bottom: 0; }
+.tb-meta dt { font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.tb-meta dd { margin: 0; font-weight: 600; }
+.ga-mark img { max-height: 56px; width: auto; }
+.hero-media { margin: 24px 0 0; }
+.hero-media img, .hero-media video { width: 100%; max-height: 640px; object-fit: contain; background: var(--tint); border-radius: var(--radius); display: block; }
+figcaption { font-size: 0.9rem; color: var(--muted); margin-top: 8px; }
+.zoom { all: unset; cursor: zoom-in; display: block; width: 100%; }
+.zoom:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.prose { max-width: 70ch; margin-top: 36px; }
+.prose h2 { font-size: var(--step-2); font-weight: 700; margin: 2em 0 0.5em; }
+.prose h2:first-child { margin-top: 0; }
+.prose p, .prose ul, .prose ol { margin: 0 0 1em; }
+.prose li { margin-bottom: 0.4em; }
+.prose strong { font-weight: 700; }
+.table-wrap { overflow-x: auto; margin: 0 0 1.4em; border: 1px solid var(--line); border-radius: var(--radius); }
+.prose table { border-collapse: collapse; width: 100%; font-size: 0.94rem; font-variant-numeric: tabular-nums; }
+.prose th, .prose td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.prose th { font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); font-weight: 700; background: var(--tint); }
+.prose tr:last-child td { border-bottom: 0; }
+.gallery { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--line); }
+.gal { margin-top: 16px; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); gap: 22px; }
+.gal-item { margin: 0; }
+.gal-item img { width: 100%; aspect-ratio: 4 / 3; object-fit: contain; background: var(--tint); border-radius: var(--radius); }
+.pn { margin-top: 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.pn a { display: grid; gap: 4px; padding: 14px 18px; border: 1px solid var(--line); border-radius: var(--radius); text-decoration: none; color: var(--ink); font-family: var(--font-display); font-weight: 700; }
+.pn a:hover { border-color: var(--accent); }
+.pn span { font-family: var(--font-body); font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.pn-next { text-align: right; }
+.ga-jobs { display: grid; gap: 22px; margin-top: 28px; }
+.job { border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(18px, 3vw, 28px); }
+.job-head { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; align-items: baseline; }
+.job h3 { font-size: var(--step-2); font-weight: 700; }
+.job-role { margin: 4px 0 0; color: var(--muted); font-weight: 600; }
+.job-date { margin: 0; font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; }
+.job ul { margin: 16px 0 0; padding-left: 1.15em; display: grid; gap: 8px; max-width: 80ch; }
+.ga-skills { margin-top: 32px; }
+
+dialog.lb { border: 0; padding: 0; background: transparent; max-width: min(96vw, 1400px); max-height: 94vh; }
+dialog.lb::backdrop { background: rgba(10, 16, 30, 0.86); }
+dialog.lb img { max-height: 84vh; width: auto; margin: 0 auto; background: #fff; border-radius: 6px; }
+dialog.lb p { color: #e8edf5; text-align: center; margin: 10px 0 0; font-size: 0.95rem; }
+dialog.lb button { position: absolute; top: 8px; right: 8px; font: inherit; font-weight: 700; background: #15213a; color: #fff; border: 0; border-radius: 999px; padding: 6px 14px; cursor: pointer; }
+
+@media (max-width: 760px) {
+  .intro { grid-template-columns: 1fr; }
+  .tb { grid-template-columns: 1fr; }
+  .pn { grid-template-columns: 1fr; }
+  .pn-next { text-align: left; }
+  .logo-btn { width: 100%; }
+}
+</style>
+
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="#top">Sujee Rubio</a>
+    <nav class="topnav" aria-label="Sections">
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="assets/files/SujeeRubio_Resume.pdf" target="_blank" rel="noopener">Résumé</a>
+    </nav>
+  </div>
+</header>
+
+<main id="home">
+  <div class="wrap intro" id="top">
+    <img class="photo" src="assets/img/headshot.jpg" alt="Portrait of Sujee Rubio">
+    <div>
+      <h1>Hi, I'm Sujee!</h1>
+      <p class="lede">I'm a <strong>Mechanical Engineering</strong> student at <strong>Northwestern University</strong> with a concentration in <strong>Aerospace</strong>, graduating in June 2027.</p>
+      <p>Over two summers at <strong>General Atomics Electromagnetic Systems</strong>, I've worked on hardware headed for orbit: designing a CubeSat payload interface and release mechanism, running deployment-safety and mass-properties tests on a satellite dispenser, and building a microgravity simulator for GNC testing. I'm looking for <strong>mechanical and systems engineering</strong> roles in <strong>aerospace and space hardware</strong>.</p>
+      <div class="actions">
+        <a class="btn primary" href="assets/files/SujeeRubio_Resume.pdf" target="_blank" rel="noopener">Résumé</a>
+        <a class="btn" href="https://www.linkedin.com/in/sujee-rubio-0a23762a9/" target="_blank" rel="noopener">LinkedIn</a>
+        <span class="email"><a href="mailto:sujeerubio2027@u.northwestern.edu" id="email-addr">sujeerubio2027@u.northwestern.edu</a><button class="copy" type="button" id="copy-email">Copy</button></span>
+      </div>
+    </div>
+  </div>
+
+  <section class="block" id="projects" aria-labelledby="projects-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><h2 id="projects-h">Projects</h2><p>Click a project to learn more.</p></div>
+        <div class="chips" role="group" aria-label="Filter projects"><button type="button" class="chip" data-f="all" aria-pressed="true">All</button><button type="button" class="chip" data-f="analysis" aria-pressed="false">Analysis & simulation</button><button type="button" class="chip" data-f="design" aria-pressed="false">Mechanical design</button><button type="button" class="chip" data-f="build" aria-pressed="false">Build & test</button></div>
+      </div>
+      <ul class="cards">
+<li class="card" data-cats="analysis">
+  <a href="#supersonic" class="card-link">
+    <div class="card-img"><img src="assets/img/supersonic/n-wave-time.jpg" alt="" loading="lazy"></div>
+    <div class="card-body">
+      <p class="ctx">ME 399 Independent Study</p>
+      <h3>Supersonic Flow &amp; Sonic Boom</h3>
+      <p class="card-sum">First-principles MATLAB model of the Concorde&#x27;s shock system and sonic boom at Mach 2, plus a reduced-order model that cut pressure error from 66% to 16%.</p>
+      <ul class="tags"><li>MATLAB</li><li>Compressible flow</li><li>Analytical modeling</li></ul>
+    </div>
+  </a>
+</li>
+<li class="card" data-cats="analysis">
+  <a href="#rocket" class="card-link">
+    <div class="card-img"><img src="assets/img/rocket/fea-fos.jpg" alt="" loading="lazy"></div>
+    <div class="card-body">
+      <p class="ctx">ME 362 Stress Analysis</p>
+      <h3>Rocket Structural Analysis</h3>
+      <p class="card-sum">MATLAB flight-data analysis to find max-Q, then ANSYS FEA driven by CFD surface pressures, showing a minimum safety factor of about 83.</p>
+      <ul class="tags"><li>ANSYS Mechanical</li><li>MATLAB</li><li>OpenRocket</li></ul>
+    </div>
+  </a>
+</li>
+<li class="card" data-cats="analysis design">
+  <a href="#shaft" class="card-link">
+    <div class="card-img"><img src="assets/img/shaft/assembly-render-coupling.jpg" alt="" loading="lazy"></div>
+    <div class="card-body">
+      <p class="ctx">ME 315 Theory of Machines</p>
+      <h3>Gearbox Output Shaft</h3>
+      <p class="card-sum">Output shaft for a 70 kW, 2,233 N·m two-stage gearbox, sized for infinite fatigue life with bearings that never need replacing.</p>
+      <ul class="tags"><li>Machine design</li><li>Fatigue analysis</li><li>SolidWorks</li></ul>
+    </div>
+  </a>
+</li>
+<li class="card" data-cats="analysis design build">
+  <a href="#brake" class="card-link">
+    <div class="card-img"><img src="assets/img/brake/design-evolution.jpg" alt="" loading="lazy"></div>
+    <div class="card-body">
+      <p class="ctx">ME 240 Mechanical Design &amp; Manufacturing</p>
+      <h3>3D-Printed Brake Calipers</h3>
+      <p class="card-sum">Topology-optimized brake calipers, SLS-printed in Nylon-12 and road-tested on a bike over two design iterations.</p>
+      <ul class="tags"><li>Topology optimization</li><li>FEA</li><li>SLS printing</li></ul>
+    </div>
+  </a>
+</li>
+<li class="card" data-cats="design build">
+  <a href="#wind-tunnel" class="card-link">
+    <div class="card-img"><img src="assets/img/wind/smoke-flow-poster.jpg" alt="" loading="lazy"></div>
+    <div class="card-body">
+      <p class="ctx">Kappa Theta Pi capstone</p>
+      <h3>Smoke-Wire Wind Tunnel</h3>
+      <p class="card-sum">A benchtop wind tunnel with a straw honeycomb straightener and a heated smoke wire that makes flow separation visible.</p>
+      <ul class="tags"><li>Prototyping</li><li>Flow visualization</li><li>SolidWorks</li></ul>
+    </div>
+  </a>
+</li>
+<li class="card" data-cats="design build">
+  <a href="#understand" class="card-link">
+    <div class="card-img"><img src="assets/img/understand/understand-on-bike.jpg" alt="" loading="lazy"></div>
+    <div class="card-body">
+      <p class="ctx">Design Thinking &amp; Communication</p>
+      <h3>The Under-Stand</h3>
+      <p class="card-sum">A detachable, telescoping kickstand that keeps an adaptive cycling program&#x27;s tandem bikes upright without bending.</p>
+      <ul class="tags"><li>Human-centered design</li><li>Statics</li><li>Prototyping</li></ul>
+    </div>
+  </a>
+</li>
+<li class="card" data-cats="design build">
+  <a href="#handhug" class="card-link">
+    <div class="card-img"><img src="assets/img/handhug/handhug-pair.jpg" alt="" loading="lazy"></div>
+    <div class="card-body">
+      <p class="ctx">Design Thinking &amp; Communication</p>
+      <h3>The HandHug</h3>
+      <p class="card-sum">A soft hand wrap with a detachable chewy for a nonverbal toddler, designed around one unexpected moment in user testing.</p>
+      <ul class="tags"><li>Human-centered design</li><li>Assistive technology</li><li>Sewing</li></ul>
+    </div>
+  </a>
+</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" id="experience" aria-labelledby="exp-h">
+    <div class="wrap">
+      <div class="sec-head"><div><h2 id="exp-h">Experience</h2><p>Click a company to learn more.</p></div></div>
+      <div class="logos">
+        <a class="logo-btn" href="#general-atomics" aria-label="General Atomics: view my two internships">
+          <span class="logo-text">General Atomics</span>
+          <small>Mechanical Engineering Intern · 2025, 2026</small>
+          <span class="go">View experience →</span>
+        </a>
+      </div>
+      <div class="lead">
+        <div><p class="label">April 2024 – present</p><h4>Kappa Theta Pi · VP of DEI</h4><p>Pre-professional technology fraternity. Led DEI efforts during recruitment and organized women-in-tech networking sessions.</p></div>
+        <div><p class="label">January 2024 – present</p><h4>Kappa Alpha Theta · Philanthropy Director, VP of External Affairs</h4><p>Created philanthropy events that raised over $5,000 in two years.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="skills" aria-labelledby="skills-h">
+    <div class="wrap">
+      <div class="sec-head"><div><h2 id="skills-h">Skills</h2></div></div>
+      <div class="skills"><div class="skill"><h3 class="label">CAD &amp; drawings</h3><ul><li>SolidWorks</li><li>Siemens NX</li><li>Onshape</li><li>AutoCAD</li><li>GD&amp;T and fits</li></ul></div><div class="skill"><h3 class="label">Analysis</h3><ul><li>ANSYS Mechanical</li><li>ANSYS Fluent</li><li>Fatigue (Goodman) and bearing life</li><li>Topology optimization</li><li>Compressible flow</li></ul></div><div class="skill"><h3 class="label">Programming</h3><ul><li>MATLAB</li><li>Python</li></ul></div><div class="skill"><h3 class="label">Testing</h3><ul><li>Vibration (shaker) table</li><li>Thermal-vacuum (TVAC) testing</li><li>FARO laser tracker</li><li>Universal testing machine (tensile)</li></ul></div><div class="skill"><h3 class="label">Manufacturing</h3><ul><li>Manual and CNC mill</li><li>Lathe</li><li>Sheet metal shear</li><li>Magnetic sheet metal brake</li><li>Laser cutter</li><li>Bambu 3D printing</li><li>Band saw</li><li>Drill press</li><li>Dremel rotary tool</li><li>Hand tapping</li><li>Soldering</li></ul></div><div class="skill"><h3 class="label">Measuring tools</h3><ul><li>Calipers</li><li>Micrometers</li><li>Torque wrenches</li></ul></div></div>
+    </div>
+  </section>
+</main>
+
+<main id="project-views" class="wrap" hidden>
+<article class="project" id="view-general-atomics" data-view="general-atomics" hidden>
+  <a href="#experience" class="back">← Back to experience</a>
+  <header class="tb">
+    <div class="tb-title"><div class="ga-mark"><span class="logo-text">General Atomics</span></div><p class="eyebrow">Experience</p><h2>General Atomics Electromagnetic Systems</h2><p class="tb-lede">Two summers as a mechanical engineering intern on spacecraft hardware: first building test systems for CubeSat guidance, navigation and control, then integrating and testing a satellite dispenser that will deploy CubeSats on orbit.</p></div>
+    <dl class="tb-meta"><div><dt>Location</dt><dd>Herndon, VA</dd></div><div><dt>Roles</dt><dd>Mechanical Engineering Intern (×2)</dd></div><div><dt>Dates</dt><dd>Summers 2025 and 2026</dd></div></dl>
+  </header>
+  <div class="ga-jobs"><section class="job"><div class="job-head"><div><h3>Satellite Dispenser Integration & Test</h3><p class="job-role">Mechanical Engineering Intern</p></div><p class="job-date">June 2026 – Aug 2026</p></div><ul><li>Supported system-level assembly, integration and test of a satellite dispenser that will launch and deploy CubeSats on orbit.</li><li>Verified deployment safety with Frangibolt actuator no-fire tests at ambient and 45 °C, confirming thermal-vacuum checks cannot trigger an accidental deployment.</li><li>Defined the payload-to-dispenser mechanical interface: designed a cup-cone interface with a hold-down and release mechanism (HDRM) inside a 3 × 3 × 2 in envelope and released GD&amp;T drawings for fabrication.</li><li>Performed preload and joint-separation analysis against a 60 g NASA ESPA design load, establishing a 450 g payload capability within 200 lbf of preload; built the test article and mass adapter for vibration testing.</li><li>Wrote the dispenser mass-properties test procedure and measured center of gravity with a FARO laser tracker in hoist-based testing.</li></ul></section><section class="job"><div class="job-head"><div><h3>CubeSat GNC Test Systems</h3><p class="job-role">Mechanical Engineering Intern</p></div><p class="job-date">June 2025 – Aug 2025</p></div><ul><li>Designed, built and tested a 6 ft × 3 ft ferrofluid-based microgravity simulator used to validate CubeSat guidance, navigation and control, with a frictionless puck system that eliminated umbilical interference.</li><li>Ran materials tests comparing platform size, magnet strength and ferrofluid properties to select a design with stable, frictionless motion.</li><li>Wrote test procedures for and performed center-of-gravity and moment-of-inertia tests on mass simulators to verify spacecraft mass properties.</li></ul></section></div>
+  <section class="ga-skills"><h3 class="label">Skills used</h3><ul class="tags big"><li>Integration &amp; test</li><li>HDRM design</li><li>GD&amp;T drawings</li><li>Preload &amp; joint-separation analysis</li><li>Vibration test articles</li><li>Thermal-vacuum safety</li><li>Mass properties (CG/MOI)</li><li>FARO laser tracker</li><li>Test procedures</li><li>Microgravity test rigs</li></ul></section>
+</article>
+<article class="project" id="view-supersonic" data-view="supersonic" hidden>
+  <a href="#projects" class="back">← All projects</a>
+  <header class="tb">
+    <div class="tb-title"><p class="eyebrow">Project 1 of 7</p><h2>Supersonic Flow &amp; Sonic Boom Analysis</h2><ul class="tags"><li>MATLAB</li><li>Compressible flow</li><li>Analytical modeling</li></ul></div>
+    <dl class="tb-meta"><div><dt>Course</dt><dd>ME 399 Independent Study</dd></div><div><dt>Advisor</dt><dd>Prof. Neelesh Patankar</dd></div><div><dt>Team</dt><dd>Solo</dd></div><div><dt>Date</dt><dd>Mar – Jun 2026</dd></div></dl>
+  </header>
+  <figure class="hero-media"><button class="zoom" type="button" data-src="assets/img/supersonic/n-wave-time.jpg" data-cap="Predicted N-wave signature of the Concorde at Mach 2, 52,000 ft. Bow shock +8.5 kPa, duration about 105 ms." aria-label="Enlarge image"><img src="assets/img/supersonic/n-wave-time.jpg" alt="Predicted N-wave signature of the Concorde at Mach 2, 52,000 ft. Bow shock +8.5 kPa, duration about 105 ms." loading="lazy"></button><figcaption>Predicted N-wave signature of the Concorde at Mach 2, 52,000 ft. Bow shock +8.5 kPa, duration about 105 ms.</figcaption></figure>
+  <div class="prose"><h2>Overview</h2>
+<p>Why did the Concorde's sonic boom get supersonic flight banned over land, and how much does an aircraft's shape control it? Over a 10-week independent study, I built a MATLAB model of the Concorde at Mach 2 and 52,000 ft from first principles. The model tracks the flow through every shock and expansion from nose to tail, predicts the N-wave pressure signature that reaches the ground, and shows how nose geometry changes boom strength. I then derived simplified reduced-order models and benchmarked them against the exact solution to find out which approximations actually hold up.</p>
+<p><strong>What I did:</strong></p>
+<ul>
+<li><strong>Researched</strong> sonic boom physics, FAA overland restrictions, and NASA's X-59 low-boom shaping strategy.</li>
+<li><strong>Simplified</strong> the Concorde into a 2D nose–fuselage–tail geometry built from published dimensions.</li>
+<li><strong>Built MATLAB solvers</strong> for oblique shocks (θ–β–M relation, weak-shock root-finding) and Prandtl-Meyer expansion fans (iterative inversion of ν(M)).</li>
+<li><strong>Constructed</strong> the ground-level N-wave signature in both time and distance.</li>
+<li><strong>Ran parametric sweeps</strong> of nose deflection angle against shock strength.</li>
+<li><strong>Derived</strong> linear, logarithmic, and hybrid small-angle models from first principles and benchmarked each against the exact solution.</li>
+</ul>
+<h2>Goals &amp; Questions</h2>
+<ul>
+<li>What pressure, temperature, and Mach number does the flow see at each stage along the Concorde's body?</li>
+<li>What does the resulting sonic boom signature look like, and how strong and how long is it?</li>
+<li>How sensitive is boom strength to nose angle, and where does the attached-shock model break down?</li>
+<li>Can a cheap analytical approximation replace the exact shock and expansion equations? If so, which one?</li>
+</ul>
+<h2>Approach</h2>
+<p><strong>1. Exact shock–expansion model.</strong> Starting from standard-atmosphere freestream conditions (M = 2.0, P = 10.6 kPa, T = 216.7 K), the flow passes through a nose oblique shock, two Prandtl-Meyer expansion fans, and a tail oblique shock. Each stage feeds the next.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>State</th>
+<th>Event</th>
+<th>Mach</th>
+<th>Pressure (kPa)</th>
+<th>Temp (K)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Freestream</td>
+<td>2.00</td>
+<td>10.61</td>
+<td>216.7</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Nose oblique shock</td>
+<td>1.60</td>
+<td>19.15</td>
+<td>258.1</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Expansion fan 1</td>
+<td>1.99</td>
+<td>10.63</td>
+<td>218.1</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Expansion fan 2</td>
+<td>2.43</td>
+<td>7.69</td>
+<td>181.0</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Tail oblique shock</td>
+<td>1.99</td>
+<td>14.80</td>
+<td>220.2</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>2. N-wave signature.</strong> I used the state pressures to construct the classic N-wave: a +8.5 kPa bow shock, a linear pressure ramp, and a recompression at the tail. The signature lasts about 105 ms (T = L/V). I also projected the shocks to the ground to plot the signature against distance, which spans about 5.5 km.</p>
+<p><strong>3. Nose-angle sweep.</strong> I swept the nose deflection angle from 0° to 90° and solved the full flow chain at each angle. The bow-shock pressure jump grows faster than linearly with nose angle. The sweep also locates the <strong>shock detachment limit at 22.9°</strong> for Mach 2. Beyond that angle, no attached-shock solution exists, and a curved bow shock stands off ahead of the nose. The tail pressure jump shows the opposite curvature because the expansion fans weaken the flow that reaches the tail shock.</p>
+<p><strong>4. Reduced-order models.</strong> I derived small-angle scaling laws, Δp/p ≈ ±A(M)θ and ΔM/M ≈ ∓B(M)θ, then tested three versions:</p>
+<ul>
+<li><strong>Linear:</strong> captured Mach number well, but the pressure error grew with every step and reached <strong>66%</strong> by the tail.</li>
+<li><strong>Logarithmic:</strong> fixed most of the pressure error but over-amplified the Mach number change.</li>
+<li><strong>Hybrid (log pressure + linear Mach):</strong> cut the tail pressure error to <strong>16%</strong> and predicted Mach within about 1%.</li>
+</ul>
+<p>The reason is mathematical. A linear pressure step multiplies by (1 + a)(1 − a) = 1 − a², so even a perfectly symmetric compression–expansion pair loses pressure. The exponential form, e^a · e^−a = 1, cancels exactly.</p>
+<h2>Outcomes</h2>
+<ul>
+<li>Predicted a <strong>Concorde-class N-wave</strong> with an 8.5 kPa bow-shock jump and about 105 ms duration at the aircraft.</li>
+<li>Identified the <strong>Mach 2 shock detachment limit at 22.9°</strong>. The Concorde's 11.1° nose sits at roughly half that limit.</li>
+<li>Developed a <strong>hybrid reduced-order model</strong> that reduced end-state pressure error from <strong>66% to 16%</strong> compared with a linear model, and explained why it works.</li>
+<li>Connected the model to real low-boom design: highly swept wings (normal Mach ≈ 1.14 on the Concorde's 55° leading edge) and slender noses, the strategy behind NASA's X-59.</li>
+</ul>
+<h2>Limitations &amp; What I'd Do Next</h2>
+<p>This is a 2D, inviscid, first-order model. It ignores lift, which adds to the real bow shock (Seebass &amp; George), and it ignores atmospheric propagation and attenuation, so the pressures shown are near-field values, not ground overpressures (real Concorde ground booms are about 93 Pa). Next steps would be adding a lift term using the Carlson simplified sonic-boom method, adding r^(−3/4) far-field attenuation, and validating against CFD.</p></div>
+  <section class="gallery" aria-label="Figures"><h3 class="label">Figures</h3><div class="gal"><figure class="gal-item"><button class="zoom" type="button" data-src="assets/img/supersonic/shock-expansion-diagram.jpg" data-cap="Simplified Concorde geometry with the nose shock, two expansion fans and the tail shock (states 1–5)." aria-label="Enlarge image"><img src="assets/img/supersonic/shock-expansion-diagram.jpg" alt="Simplified Concorde geometry with the nose shock, two expansion fans and the tail shock (states 1–5)." loading="lazy"></button><figcaption>Simplified Concorde geometry with the nose shock, two expansion fans and the tail shock (states 1–5).</figcaption></figure><figure class="gal-item"><button class="zoom" type="button" data-src="assets/img/supersonic/n-wave-ground.jpg" data-cap="N-wave pressure profile plotted against ground distance." aria-label="Enlarge image"><img src="assets/img/supersonic/n-wave-ground.jpg" alt="N-wave pressure profile plotted against ground distance." loading="lazy"></button><figcaption>N-wave pressure profile plotted against ground distance.</figcaption></figure><figure class="gal-item"><button class="zoom" type="button" data-src="assets/img/supersonic/dp1-vs-nose-angle.jpg" data-cap="Bow-shock pressure jump vs. nose deflection angle. The attached-shock solution ends at the 22.9° detachment limit." aria-label="Enlarge image"><img src="assets/img/supersonic/dp1-vs-nose-angle.jpg" alt="Bow-shock pressure jump vs. nose deflection angle. The attached-shock solution ends at the 22.9° detachment limit." loading="lazy"></button><figcaption>Bow-shock pressure jump vs. nose deflection angle. The attached-shock solution ends at the 22.9° detachment limit.</figcaption></figure><figure class="gal-item"><button class="zoom" type="button" data-src="assets/img/supersonic/model-compare-dp1.jpg" data-cap="Exact vs. linear, log and hybrid approximations for the nose shock." aria-label="Enlarge image"><img src="assets/img/supersonic/model-compare-dp1.jpg" alt="Exact vs. linear, log and hybrid approximations for the nose shock." loading="lazy"></button><figcaption>Exact vs. linear, log and hybrid approximations for the nose shock.</figcaption></figure><figure class="gal-item"><button class="zoom" type="button" data-src="assets/img/supersonic/model-compare-dp3.jpg" data-cap="The same comparison through the full shock–expansion chain, where errors compound." aria-label="Enlarge image"><img src="assets/img/supersonic/model-compare-dp3.jpg" alt="The same comparison through the full shock–expansion chain, where errors compound." loading="lazy"></button><figcaption>The same comparison through the full shock–expansion chain, where errors compound.</figcaption></figure></div></section>
+  <nav class="pn" aria-label="More projects"><span></span><a href="#rocket" class="pn-next"><span>Next project</span>Rocket Structural Analysis</a></nav>
+</article>
+<article class="project" id="view-rocket" data-view="rocket" hidden>
+  <a href="#projects" class="back">← All projects</a>
+  <header class="tb">
+    <div class="tb-title"><p class="eyebrow">Project 2 of 7</p><h2>High-Power Rocket Structural Analysis</h2><ul class="tags"><li>ANSYS Mechanical</li><li>MATLAB</li><li>OpenRocket</li></ul></div>
+    <dl class="tb-meta"><div><dt>Course</dt><dd>ME 362 Stress Analysis</dd></div><div><dt>Team</dt><dd>3 students</dd></div><div><dt>My role</dt><dd>Flight-data analysis, structural FEA</dd></div><div><dt>Date</dt><dd>Mar – Jun 2026</dd></div></dl>
+  </header>
+  <figure class="hero-media"><button class="zoom" type="button" data-src="assets/img/rocket/fea-fos.jpg" data-cap="Brittle Coulomb-Mohr factor-of-safety contour at max-Q. Minimum about 83 against a 1.5 requirement." aria-label="Enlarge image"><img src="assets/img/rocket/fea-fos.jpg" alt="Brittle Coulomb-Mohr factor-of-safety contour at max-Q. Minimum about 83 against a 1.5 requirement." loading="lazy"></button><figcaption>Brittle Coulomb-Mohr factor-of-safety contour at max-Q. Minimum about 83 against a 1.5 requirement.</figcaption></figure>
+  <div class="prose"><h2>Overview</h2>
+<p>A NUSTARS member's high-power rocket, built for a NAR Level 1 certification launch, needed to survive the worst aerodynamic load of its flight. Our team set out to prove it would before launch day. Instead of guessing at loads, we built a four-stage simulation chain. We measured the physical rocket and modeled it in CAD, simulated its flight in OpenRocket, solved the airflow at peak load in ANSYS Fluent, and imported that pressure field into ANSYS structural FEA.</p>
+<p><strong>My role:</strong> Teammates handled the CAD and CFD. I owned the two ends of the pipeline: turning the flight simulation into a load case, and turning the CFD pressures into a structural verdict.</p>
+<ul>
+<li><strong>Wrote MATLAB scripts</strong> to process OpenRocket flight data, compute dynamic pressure through the flight, and identify <strong>max-Q (26.4 kPa at Mach 0.62, t = 1.2 s)</strong> as the critical load case.</li>
+<li><strong>Ran ANSYS Static Structural FEA</strong> with the CFD surface pressures imported directly as loads, then evaluated deformation, von Mises, principal, and cylindrical (hoop, radial, axial) stresses.</li>
+<li><strong>Applied the Brittle Coulomb-Mohr failure criterion</strong> for the fiberglass composite and built a custom factor-of-safety contour across the whole rocket.</li>
+</ul>
+<h2>Requirements</h2>
+<ul>
+<li><strong>No structural failure:</strong> stresses must stay below the strength of the epoxy/E-glass composite (UTS 440 MPa; UCS 352 MPa, estimated at 80% of UTS).</li>
+<li><strong>Factor of safety ≥ 1.5</strong> to cover material variability, build quality, and simulation simplifications.</li>
+<li><strong>Limited deflection</strong>, especially at the fins, so the rocket stays stable in flight.</li>
+</ul>
+<h2>Approach</h2>
+<p><strong>1. CAD from the real rocket.</strong> We measured every structural part with calipers and a scale and modeled it in Onshape: a von Kármán nosecone, body tube, coupler, motor mount, centering rings, and three fins. The rocket is 0.89 m long with a 57 mm body tube.</p>
+<p><strong>2. Finding the critical load case (my part).</strong> OpenRocket simulated the flight on an H182 motor and confirmed a stable configuration (1.06-caliber stability margin). I wrote MATLAB scripts to process the exported flight data, calculate q = ½ρv², and plot the altitude, velocity/Mach, and dynamic-pressure histories. Dynamic pressure spikes to <strong>26.4 kPa just 1.2 s after launch</strong>, while the motor is still burning, then falls to nearly zero long before apogee at 1,042 m. That identified max-Q as the single worst-case instant and gave the CFD its exact boundary conditions.</p>
+<p><strong>3. CFD at max-Q.</strong> We ran a 3D steady, compressible Fluent model with k-ω SST turbulence, Sutherland viscosity, and pressure far-field boundaries. Peak pressure reaches about 111 kPa at the nose tip, and the solution converged in about 650 iterations.</p>
+<p><strong>4. Structural FEA (my part).</strong> I linked the Fluent results into ANSYS Static Structural in Workbench, so each surface sees its own location-specific pressure instead of an assumed uniform load. A fixed support at the base of the body tube gives the solver a reaction point. At zero angle of attack the loading is nearly axisymmetric, so this support adds little artificial bending, and I excluded the stress concentrations right at the constraint from the results. Because the composite is brittle, I used Brittle Coulomb-Mohr instead of von Mises as the failure criterion: n = (σ₁/σ_UTS − σ₃/σ_UCS)⁻¹, plotted as a contour over the full model.</p>
+<h2>Outcomes</h2>
+<ul>
+<li><strong>Maximum von Mises stress of 3.7 MPa</strong>, about 1% of the material's tensile strength.</li>
+<li><strong>Maximum deformation of 18 µm</strong>, at the nosecone. That is far too small to affect the fins or flight stability.</li>
+<li><strong>Minimum factor of safety of about 83</strong> (Brittle Coulomb-Mohr), far above the 1.5 requirement.</li>
+<li><strong>Conclusion:</strong> the rocket's structure is not the limiting risk at max-Q, which gave the builder confidence going into the certification launch.</li>
+</ul>
+<h2>Limitations &amp; What I'd Do Next</h2>
+<ul>
+<li>The model treats the filament-wound fiberglass as <strong>isotropic and linear-elastic</strong>. A real layup is orthotropic, so the next step is orthotropic material properties from test data.</li>
+<li>Max-Q is the worst <em>aerodynamic</em> load, but it isn't the only load. <strong>Motor thrust compression, ignition heating near the base, and parachute-deployment shock</strong> are likely more severe and should be analyzed next.</li>
+<li>Validate the OpenRocket loads against <strong>real flight data</strong> from the launch.</li>
+</ul></div>
+  <section class="gallery" aria-label="Figures"><h3 class="label">Figures</h3><div class="gal"><figure class="gal-item"><button class="zoom" type="button" data-src="assets/img/rocket/dynamic-pressure.jpg" data-cap="Dynamic pressure vs. time from my MATLAB script. Max-Q of 26.4 kPa at t = 1.2 s." aria-label="Enlarge image"><img src="assets/img/rocket/dynamic-pressure.jpg" alt="Dynamic pressure vs. time from my MATLAB script. Max-Q of 26.4 kPa at t = 1.2 s." loading="lazy"></button><figcaption>Dynamic pressure vs. time from my MATLAB script. Max-Q of 26.4 kPa at t = 1.2 s.</figcaption></figure><figure class="gal-item"><button class="zoom" type="button" data-src="assets/img/rocket/velocity-mach.jpg" data-cap="Velocity and Mach number through the powered phase." aria-label="Enlarge image"><img src="assets/img/rocket/velocity-mach.jpg" alt="Velocity and Mach number through the powered phase." loading="lazy"></button><figcaption>Velocity and Mach number through the powered phase.</figcaption></figure><figure class="gal-item"><button class="zoom" type="button" data-src="assets/img/rocket/altitude.jpg" data-cap="Full trajectory with max-Q and apogee (1,042 m) marked." aria-label="Enlarge image"><img src="assets/img/rocket/altitude.jpg" alt="Full trajectory with max-Q and apogee (1,042 m) marked." loading="lazy"></button><figcaption>Full trajectory with max-Q and apogee (1,042 m) marked.</figcaption></figure><figure class="gal-item"><button class="zoom" type="button" data-src="assets/img/rocket/cfd-pressure.jpg" data-cap="Teammates’ Fluent surface-pressure field at max-Q, imported as the FEA load." aria-label="Enlarge image"><img src="assets/img/rocket/cfd-pressure.jpg" alt="Teammates’ Fluent surface-pressure field at max-Q, imported as the FEA load." loading="lazy"></button><figcaption>Teammates’ Fluent surface-pressure field at max-Q, imported as the FEA load.</figcaption></figure><figure class="gal-item"><button class="zoom" type="button" data-src="assets/img/rocket/fea-von-mises.jpg" data-cap="Equivalent (von Mises) stress. Maximum 3.7 MPa." aria-label="Enlarge image"><img src="assets/img/rocket/fea-von-mises.jpg" alt="Equivalent (von Mises) stress. Maximum 3.7 MPa." loading="lazy"></button><figcaption>Equivalent (von Mises) stress. Maximum 3.7 MPa.</figcaption></figure><figure class="gal-item"><button class="zoom" type="button" data-src="assets/img/rocket/fea-deformation.jpg" data-cap="Total deformation. Maximum 18 µm at the nosecone." aria-label="Enlarge image"><img src="assets/img/rocket/fea-deformation.jpg" alt="Total deformation. Maximum 18 µm at the nosecone." loading="lazy"></button><figcaption>Total deformation. Maximum 18 µm at the nosecone.</figcaption></figure><figure class="gal-item"><button class="zoom" type="button" data-src="assets/img/rocket/cad.jpg" data-cap="Onshape model of the rocket, built from caliper measurements of the real airframe." aria-label="Enlarge image"><img src="assets/img/rocket/cad.jpg" alt="Onshape model of the rocket, built from caliper measurements of the real airframe." loading="lazy"></button><figcaption>Onshape model of the rocket, built from caliper measurements of the real airframe.</figcaption></figure></div></section>
+  <nav class="pn" aria-label="More projects"><a href="#supersonic" class="pn-prev"><span>Previous project</span>Supersonic Flow &amp; Sonic Boom</a><a href="#shaft" class="pn-next"><span>Next project</span>Gearbox Output Shaft</a></nav>
+</article>
+<article class="project" id="view-shaft" data-view="shaft" hidden>
+  <a href="#projects" class="back">← All projects</a>
+  <header class="tb">
+    <div class="tb-title"><p class="eyebrow">Project 3 of 7</p><h2>Gearbox Output Shaft Design</h2><ul class="tags"><li>Machine design</li><li>Fatigue analysis</li><li>SolidWorks</li></ul></div>
+    <dl class="tb-meta"><div><dt>Course</dt><dd>ME 315 Theory of Machines</dd></div><div><dt>Team</dt><dd>3 students</dd></div><div><dt>My role</dt><dd>Owned Shaft C, the output shaft</dd></div><div><dt>Date</dt><dd>Spring 2026</dd></div></dl>
+  </header>
+  <figure class="hero-media"><button class="zoom" type="button" data-src="assets/img/shaft/assembly-render-coupling.jpg" data-cap="Shaft C assembly: Gear 4, SKF 6313 bearings, endcaps and the keyed Ø60 coupling end." aria-label="Enlarge image"><img src="assets/img/shaft/assembly-render-coupling.jpg" alt="Shaft C assembly: Gear 4, SKF 6313 bearings, endcaps and the keyed Ø60 coupling end." loading="lazy"></button><figcaption>Shaft C assembly: Gear 4, SKF 6313 bearings, endcaps and the keyed Ø60 coupling end.</figcaption></figure>
+  <div class="prose"><h2>Overview</h2>
+<p>Our team designed a 70 kW two-stage spur-gear speed reducer that steps a 2,600 rpm motor down to 299 rpm. Each team member owned one shaft system. I designed <strong>Shaft C, the output shaft</strong>. It carries the gearbox's highest torque, <strong>2,233 N·m</strong>, through a 55-tooth gear and delivers it to the driven machine through a coupling. My scope covered the full shaft system: loads, shaft sizing, keyways, gear check, bearing selection, and the SolidWorks part and assembly drawings.</p>
+<p><strong>What I did:</strong></p>
+<ul>
+<li><strong>Derived</strong> gear mesh forces and bearing reactions in two planes from the drivetrain's power and speed.</li>
+<li><strong>Built</strong> shear and bending-moment diagrams to locate the critical cross sections.</li>
+<li><strong>Sized</strong> the shaft for infinite life using modified-Goodman fatigue and von Mises yield, with Marin endurance factors and keyway stress concentrations.</li>
+<li><strong>Designed</strong> DIN 6885 parallel keyways for the gear and coupling seats.</li>
+<li><strong>Selected</strong> SKF 6313 deep-groove ball bearings by L10 life analysis.</li>
+<li><strong>Checked</strong> Gear 4 for tooth bending and pitting using the AGMA method.</li>
+<li><strong>Modeled and drew</strong> the shaft, gear, and assembly in SolidWorks, specifying H7/k6 bearing and gear fits.</li>
+</ul>
+<h2>Requirements</h2>
+<ul>
+<li>Transmit 70 kW at 299.4 rpm with daily start/stop operation.</li>
+<li>Achieve infinite fatigue life with a minimum safety factor of 1.3 at 99% reliability.</li>
+<li>Bearings must last the 5-year duty life (14,560 hr) without replacement if possible.</li>
+<li>Fit the shared gearbox housing: a 155 mm bearing face-to-face span and a 185 mm center distance to Shaft B.</li>
+<li>Use AISI 1045 cold-drawn steel (Sut = 550 MPa, Sy = 310 MPa).</li>
+</ul>
+<h2>Design &amp; Analysis</h2>
+<p><strong>Loads.</strong> With T = 2,233 N·m on a 275 mm pitch-diameter gear, the mesh produces a <strong>16.2 kN tangential</strong> and a <strong>5.9 kN radial</strong> force. The gear sits off-center: 129 mm from the coupling-side bearing and 59 mm from the far bearing. As a result, the far bearing carries more than twice the load (11.9 kN vs. 5.4 kN). The peak combined bending moment at the gear is <strong>699 N·m</strong>.</p>
+<p><strong>Two critical sections, two failure modes.</strong> I checked both the gear seat and the coupling seat. Each one governs a different failure criterion:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Section</th>
+<th>Diameter</th>
+<th>Loading</th>
+<th>Goodman FoS (fatigue)</th>
+<th>Yield FoS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gear keyway</td>
+<td>Ø70 mm</td>
+<td>Bending + torsion</td>
+<td><strong>2.29</strong> (governs)</td>
+<td>3.07</td>
+</tr>
+<tr>
+<td>Coupling keyway</td>
+<td>Ø60 mm</td>
+<td>Torsion only</td>
+<td>3.77</td>
+<td><strong>2.13</strong> (governs)</td>
+</tr>
+</tbody>
+</table></div>
+<p>The gear seat sees the maximum bending moment, so it controls fatigue. The coupling seat carries no bending, but its smaller diameter raises torsional stress (τ ∝ 1/d³), so it controls yield. I used conservative keyway stress-concentration factors (Kf = 2.0, Kfs = 1.6) to cover the shoulder fillets as well.</p>
+<p><strong>Bearings.</strong> Because the gear is spur-cut, the bearings see pure radial load (X = 1, Y = 0). The required dynamic rating was 75.8 kN, and the SKF 6313 is rated at C = 97.5 kN. I used the same bearing at both positions so the housing bores match on each side wall. The governing bearing lasts <strong>about 31,000 hr (10.6 years)</strong>, more than twice the duty life, so <strong>no bearing changes are needed</strong>.</p>
+<p><strong>Geometry &amp; fits.</strong> The Ø70 gear seat steps down through locating shoulders to Ø65 bearing seats and a Ø60 coupling end. Bearings and gear use H7/k6 transition fits, and the keyways are end-milled with rounded ends.</p>
+<h2>Outcomes</h2>
+<ul>
+<li>Shaft C has <strong>infinite fatigue life</strong>, with a minimum FoS of <strong>2.29 (fatigue) and 2.13 (yield)</strong> against a 1.3 requirement.</li>
+<li>The bearing configuration needs <strong>zero replacements</strong> over the 5-year life, while the system level still requires one Shaft B bearing change.</li>
+<li>I integrated my shaft into a complete 8.68:1 gearbox with shared housing constraints and a full maintenance schedule.</li>
+</ul>
+<h2>What I'd Improve</h2>
+<p>Design review caught an assembly issue in my first drawing. The gear seat sat between two fixed Ø75 shoulders, so the gear could not slide onto the shaft. The fix is to replace one shoulder with a spacer or retaining ring. This taught me to design for assembly order, not just stress.</p></div>
+  <section class="gallery" aria-label="Figures"><h3 class="label">Figures</h3><div class="gal"><figure class="gal-item"><button class="zoom" type="button" data-src="assets/img/shaft/fbd.jpg" data-cap="Free-body, shear and bending-moment diagrams in the tangential and radial planes." aria-label="Enlarge image"><img src="assets/img/shaft/fbd.jpg" alt="Free-body, shear and bending-moment diagrams in the tangential and radial planes." loading="lazy"></button><figcaption>Free-body, shear and bending-moment diagrams in the tangential and radial planes.</figcaption></figure><figure class="gal-item"><button class="zoom" type="button" data-src="assets/img/shaft/shaft-c-render.jpg" data-cap="Shaft C: stepped AISI 1045 shaft with gear and coupling keyways." aria-label="Enlarge image"><img src="assets/img/shaft/shaft-c-render.jpg" alt="Shaft C: stepped AISI 1045 shaft with gear and coupling keyways." loading="lazy"></button><figcaption>Shaft C: stepped AISI 1045 shaft with gear and coupling keyways.</figcaption></figure><figure class="gal-item"><button class="zoom" type="button" data-src="assets/img/shaft/assembly-render-gear.jpg" data-cap="Assembly from the gear end." aria-label="Enlarge image"><img src="assets/img/shaft/assembly-render-gear.jpg" alt="Assembly from the gear end." loading="lazy"></button><figcaption>Assembly from the gear end.</figcaption></figure><figure class="gal-item"><button class="zoom" type="button" data-src="assets/img/shaft/gear4-render.jpg" data-cap="Gear 4: 55-tooth spur gear, module 5, 75 mm face width." aria-label="Enlarge image"><img src="assets/img/shaft/gear4-render.jpg" alt="Gear 4: 55-tooth spur gear, module 5, 75 mm face width." loading="lazy"></button><figcaption>Gear 4: 55-tooth spur gear, module 5, 75 mm face width.</figcaption></figure><figure class="gal-item"><button class="zoom" type="button" data-src="assets/img/shaft/bearing-render.jpg" data-cap="SKF 6313 deep-groove ball bearing." aria-label="Enlarge image"><img src="assets/img/shaft/bearing-render.jpg" alt="SKF 6313 deep-groove ball bearing." loading="lazy"></button><figcaption>SKF 6313 deep-groove ball bearing.</figcaption></figure></div></section>
+  <nav class="pn" aria-label="More projects"><a href="#rocket" class="pn-prev"><span>Previous project</span>Rocket Structural Analysis</a><a href="#brake" class="pn-next"><span>Next project</span>3D-Printed Brake Calipers</a></nav>
+</article>
+<article class="project" id="view-brake" data-view="brake" hidden>
+  <a href="#projects" class="back">← All projects</a>
+  <header class="tb">
+    <div class="tb-title"><p class="eyebrow">Project 4 of 7</p><h2>3D-Printed Bicycle Brake Calipers</h2><ul class="tags"><li>Topology optimization</li><li>FEA</li><li>SLS printing</li></ul></div>
+    <dl class="tb-meta"><div><dt>Course</dt><dd>ME 240 Mechanical Design &amp; Manufacturing</dd></div><div><dt>Team</dt><dd>5 students</dd></div><div><dt>My role</dt><dd>CAD &amp; Manufacturing Lead</dd></div><div><dt>Date</dt><dd>Spring 2025</dd></div></dl>
+  </header>
+  <figure class="hero-media"><button class="zoom" type="button" data-src="assets/img/brake/design-evolution.jpg" data-cap="Design evolution for both calipers: design space, topology optimization, first design, printed design." aria-label="Enlarge image"><img src="assets/img/brake/design-evolution.jpg" alt="Design evolution for both calipers: design space, topology optimization, first design, printed design." loading="lazy"></button><figcaption>Design evolution for both calipers: design space, topology optimization, first design, printed design.</figcaption></figure>
+  <div class="prose"><h2>Overview</h2>
+<p>Our team designed, 3D-printed, and road-tested a pair of rim-brake calipers for a bicycle. We started from a mounting interface and a block of allowable design space. FEA and topology optimization guided the material removal, and the parts were printed in Nylon-12 by selective laser sintering (SLS). We then went through two rounds of design–build–test on a real bike. The final calipers weigh <strong>35.5 g</strong>, less than a quarter of our 150 g target, and stop the bike within our 15 m limit.</p>
+<p><strong>My role (CAD &amp; Manufacturing Lead):</strong></p>
+<ul>
+<li><strong>Modeled the calipers in CAD</strong>, turning the topology-optimization results into printable left and right caliper geometry.</li>
+<li><strong>Updated the CAD for the second iteration:</strong> slip-fit pivot and pad holes, a new cable-mount nub, and enlarged cutouts and fillets.</li>
+<li><strong>Built the needs and metrics tables</strong>, turning 22 user needs into 20 measurable metrics with values traced to ISO 4210, federal bicycle regulations, and published data.</li>
+<li><strong>Helped run the topology optimization and FEA</strong> that guided where material came out.</li>
+</ul>
+<h2>Requirements</h2>
+<p>We built a needs table from user, safety, and performance considerations, then turned it into 20 measurable metrics backed by ISO 4210, CPSC/eCFR, and published data. The key ones:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Ideal</th>
+<th>Marginal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Caliper mass</td>
+<td>150 g</td>
+<td>250 g</td>
+</tr>
+<tr>
+<td>Stopping distance (dry)</td>
+<td>8 m</td>
+<td>15 m</td>
+</tr>
+<tr>
+<td>Rider input force</td>
+<td>50 N</td>
+<td>70 N</td>
+</tr>
+<tr>
+<td>Manufacturing cost</td>
+<td>$10</td>
+<td>$30</td>
+</tr>
+<tr>
+<td>ISO 4210 compliance (sharp edges, lock washers, adjustment)</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Design Process</h2>
+<p><strong>1. Design space → FEA.</strong> We modeled the full allowable volume around the brake mounts and loaded it. Almost all of it sat far below the 50 MPa allowable stress, which meant there was a lot of material to remove.</p>
+<p><strong>2. Topology optimization.</strong> The optimizer showed where load actually flows from the cable to the pivot to the pad. That gave us the organic, trussed shapes we used as a starting point.</p>
+<p><strong>3. First design.</strong> We redrew the calipers to follow the topology results, then smoothed sharp transitions to cut stress concentrations. FEA predicted about 4 mm of tip deflection against an 11 mm limit (a deflection safety factor of about 2.75). Physical testing later matched closely, with 3 mm on the upper arm and 5 mm on the lower.</p>
+<p><strong>4. Print, assemble, test.</strong> We SLS-printed the calipers in Nylon-12, mounted them on a bike, and measured mass, stopping distance, and the rider force needed to brake.</p>
+<h2>Testing &amp; Iteration</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Iteration 1</th>
+<th>Iteration 2</th>
+<th>Target (marginal)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mass</td>
+<td>41.3 g</td>
+<td><strong>35.5 g</strong> (−14%)</td>
+<td>≤ 250 g</td>
+</tr>
+<tr>
+<td>Stopping distance</td>
+<td><strong>11.3 m</strong> (wheels locked)</td>
+<td>14.8 m</td>
+<td>≤ 15 m</td>
+</tr>
+<tr>
+<td>Rider input force</td>
+<td><strong>68.9 N</strong></td>
+<td>102 N ✗</td>
+<td>≤ 70 N</td>
+</tr>
+<tr>
+<td>Material cost</td>
+<td>$8.26</td>
+<td>$7.10</td>
+<td>≤ $30</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Iteration 1 problems:</strong></p>
+<ul>
+<li>The pivot and pad holes printed undersized and had to be drilled out.</li>
+<li>The calipers <strong>twisted under load</strong> because the cable pulled off-axis from our mounting point. We hadn't designed for that load case.</li>
+</ul>
+<p><strong>Iteration 2 fixes:</strong></p>
+<ul>
+<li>Resized the holes for a proper slip fit, so assembly became quick and easy.</li>
+<li><strong>Added a cable-mount nub so the cable pulls straight</strong>, which eliminated the twisting completely.</li>
+<li>Enlarged cutouts and fillets to save another 14% of mass.</li>
+</ul>
+<h2>Outcomes &amp; Lessons</h2>
+<ul>
+<li>Both iterations passed the most important metric, stopping distance. Iteration 1 locked the wheels.</li>
+<li>The cable-mount redesign <strong>solved the twisting problem</strong> and simplified assembly.</li>
+<li><strong>The key lesson:</strong> the extra weight reduction in iteration 2 was a mistake. Iteration 1 was already 70% under the mass target. Removing more material added compliance, which pushed the rider force to 102 N (failing the 70 N limit) and lengthened the stopping distance. Our recommendation was to go back to the stiffer iteration-1 body and keep the new cable mount and tolerances. I learned to optimize for the metric that matters, not for the one that's easiest to improve.</li>
+<li><strong>Production plan:</strong> casting for an entry-level bike (50k units/yr), forged and CNC-machined aluminum for a high-end road bike (10k/yr), and metal additive manufacturing for low-volume custom frames (200/yr).</li>
+</ul></div>
+  <section class="gallery" aria-label="Figures"><h3 class="label">Figures</h3><div class="gal"><figure class="gal-item"><button class="zoom" type="button" data-src="assets/img/brake/fea-010.jpg" data-cap="Printed design, upper caliper: von Mises stress against a 50 MPa limit." aria-label="Enlarge image"><img src="assets/img/brake/fea-010.jpg" alt="Printed design, upper caliper: von Mises stress against a 50 MPa limit." loading="lazy"></button><figcaption>Printed design, upper caliper: von Mises stress against a 50 MPa limit.</figcaption></figure><figure class="gal-item"><button class="zoom" type="button" data-src="assets/img/brake/fea-011.jpg" data-cap="Printed design, lower caliper: von Mises stress." aria-label="Enlarge image"><img src="assets/img/brake/fea-011.jpg" alt="Printed design, lower caliper: von Mises stress." loading="lazy"></button><figcaption>Printed design, lower caliper: von Mises stress.</figcaption></figure><figure class="gal-item"><button class="zoom" type="button" data-src="assets/img/brake/fea-012.jpg" data-cap="Printed design, upper caliper: displacement." aria-label="Enlarge image"><img src="assets/img/brake/fea-012.jpg" alt="Printed design, upper caliper: displacement." loading="lazy"></button><figcaption>Printed design, upper caliper: displacement.</figcaption></figure><figure class="gal-item"><button class="zoom" type="button" data-src="assets/img/brake/fea-013.jpg" data-cap="Printed design, lower caliper: displacement." aria-label="Enlarge image"><img src="assets/img/brake/fea-013.jpg" alt="Printed design, lower caliper: displacement." loading="lazy"></button><figcaption>Printed design, lower caliper: displacement.</figcaption></figure><figure class="gal-item"><button class="zoom" type="button" data-src="assets/img/brake/fea-004.jpg" data-cap="Topology optimization of the upper caliper design space." aria-label="Enlarge image"><img src="assets/img/brake/fea-004.jpg" alt="Topology optimization of the upper caliper design space." loading="lazy"></button><figcaption>Topology optimization of the upper caliper design space.</figcaption></figure></div></section>
+  <nav class="pn" aria-label="More projects"><a href="#shaft" class="pn-prev"><span>Previous project</span>Gearbox Output Shaft</a><a href="#wind-tunnel" class="pn-next"><span>Next project</span>Smoke-Wire Wind Tunnel</a></nav>
+</article>
+<article class="project" id="view-wind-tunnel" data-view="wind-tunnel" hidden>
+  <a href="#projects" class="back">← All projects</a>
+  <header class="tb">
+    <div class="tb-title"><p class="eyebrow">Project 5 of 7</p><h2>Benchtop Smoke-Wire Wind Tunnel</h2><ul class="tags"><li>Prototyping</li><li>Flow visualization</li><li>SolidWorks</li></ul></div>
+    <dl class="tb-meta"><div><dt>Program</dt><dd>Kappa Theta Pi capstone</dd></div><div><dt>Team</dt><dd>Solo, with a KTP mentor</dd></div><div><dt>Note</dt><dd>My first personal engineering project</dd></div></dl>
+  </header>
+  <figure class="hero-media"><video src="assets/img/wind/smoke-flow.mp4" poster="assets/img/wind/smoke-flow-poster.jpg" autoplay muted loop playsinline aria-label="Smoke-wire streaklines lifting over the test block and breaking into a turbulent wake."></video><figcaption>Smoke-wire streaklines lifting over the test block and breaking into a turbulent wake.</figcaption></figure>
+  <div class="prose"><h2>Overview</h2>
+<p>Wind tunnels let engineers <em>see</em> how air moves around an object, but real ones are room-sized. For my KTP capstone, I set out to build a working one on a lab bench from scratch, with no kit and no instructions. I designed the airflow path, built a flow straightener out of straws, and used a smoke wire to make the airflow visible. Then I ran a bluff test body through it and watched the flow separate.</p>
+<p><strong>Why I built it:</strong> to turn my interest in aeronautics into something hands-on, build my CAD and mechanical design skills, and see the fluid dynamics I'd only read about.</p>
+<h2>How It Works</h2>
+<p><strong>1. Air source.</strong> Two 120 mm-class computer fans, powered at 12 V from a bench supply, push air into the tunnel.</p>
+<p><strong>2. Flow straightener.</strong> Fans produce swirling, uneven air. I packed straws into a <strong>handmade honeycomb</strong> in front of the fans. Each straw acts as a tiny duct that forces the air to travel straight, the same idea as the honeycomb sections in full-size tunnels.</p>
+<p><strong>3. Test section.</strong> The test section is an open channel lined with black foam board, so the white smoke stands out on camera.</p>
+<p><strong>4. Smoke-wire flow visualization.</strong> I stretched a <strong>nichrome wire</strong> across the flow just downstream of the straightener and coated it in a glycerol-based fluid. At 12 V the wire heats up and vaporizes the coating into thin, evenly spaced smoke streaks. These <strong>streaklines</strong> show the path the air takes around the model.</p>
+<p><strong>5. Test model.</strong> I designed a TIE fighter model in SolidWorks, with a spline-profiled cockpit, angled hexagonal wing panels, and a full drawing set. It wasn't printed in time for testing, so I ran the tunnel with a <strong>sanded wooden block</strong> as a bluff-body stand-in. The TIE fighter was later printed in PLA on a Bambu printer.</p>
+<h2>What I Saw</h2>
+<ul>
+<li><strong>The straightener worked.</strong> Smoke left the wire as distinct, roughly parallel streaks instead of a swirling cloud, so the straws were removing much of the fans' rotation.</li>
+<li><strong>Flow separation over a bluff body.</strong> The streaks stayed fairly organized approaching the block, then <strong>lifted over its leading edge</strong> and broke into a wide, churning <strong>turbulent wake</strong> behind it. This is the classic behavior of a blunt shape, and the reason streamlined bodies have much less drag.</li>
+<li><strong>Flow quality limits.</strong> Even upstream, the streaks wavered and spread out, which points to leftover turbulence from the fans and an open, low-speed test section. That told me exactly what to improve next.</li>
+</ul>
+<h2>What I'd Do Next</h2>
+<ul>
+<li><strong>Add a contraction cone</strong> between the straightener and the test section. It would speed up the air and smooth it out, which is how real tunnels get clean, uniform flow.</li>
+<li><strong>Enclose the test section</strong> with a clear acrylic window, so room air doesn't disturb the flow.</li>
+<li><strong>Measure, not just observe:</strong> a pitot tube or anemometer for airspeed, and a small load cell for drag.</li>
+<li><strong>Test the printed TIE fighter</strong> against a streamlined shape to compare wakes.</li>
+</ul>
+<h2>Takeaway</h2>
+<p>This was my first engineering project outside of class, and it's where I learned to build first and refine from what I saw. Making flow separation visible with straws, foam board, and a hot wire gave me an intuition for aerodynamics that I've built on since, through compressible-flow research and rocket analysis.</p></div>
+  <section class="gallery" aria-label="Figures"><h3 class="label">Figures</h3><div class="gal"><figure class="gal-item"><button class="zoom" type="button" data-src="assets/img/wind/tunnel-setup.jpg" data-cap="The full tunnel on the bench." aria-label="Enlarge image"><img src="assets/img/wind/tunnel-setup.jpg" alt="The full tunnel on the bench." loading="lazy"></button><figcaption>The full tunnel on the bench.</figcaption></figure><figure class="gal-item"><button class="zoom" type="button" data-src="assets/img/wind/honeycomb-straightener.jpg" data-cap="Handmade straw honeycomb flow straightener." aria-label="Enlarge image"><img src="assets/img/wind/honeycomb-straightener.jpg" alt="Handmade straw honeycomb flow straightener." loading="lazy"></button><figcaption>Handmade straw honeycomb flow straightener.</figcaption></figure><figure class="gal-item"><button class="zoom" type="button" data-src="assets/img/wind/fans.jpg" data-cap="Dual-fan drive, powered at 12 V." aria-label="Enlarge image"><img src="assets/img/wind/fans.jpg" alt="Dual-fan drive, powered at 12 V." loading="lazy"></button><figcaption>Dual-fan drive, powered at 12 V.</figcaption></figure><figure class="gal-item"><button class="zoom" type="button" data-src="assets/img/wind/test-section-detail.jpg" data-cap="Nichrome smoke wire and clip leads in the test section." aria-label="Enlarge image"><img src="assets/img/wind/test-section-detail.jpg" alt="Nichrome smoke wire and clip leads in the test section." loading="lazy"></button><figcaption>Nichrome smoke wire and clip leads in the test section.</figcaption></figure><figure class="gal-item"><button class="zoom" type="button" data-src="assets/img/wind/ship-cad.jpg" data-cap="TIE fighter test model in SolidWorks, later printed in PLA." aria-label="Enlarge image"><img src="assets/img/wind/ship-cad.jpg" alt="TIE fighter test model in SolidWorks, later printed in PLA." loading="lazy"></button><figcaption>TIE fighter test model in SolidWorks, later printed in PLA.</figcaption></figure><figure class="gal-item"><button class="zoom" type="button" data-src="assets/img/wind/ship-sketch.jpg" data-cap="Spline-profiled cockpit sketch." aria-label="Enlarge image"><img src="assets/img/wind/ship-sketch.jpg" alt="Spline-profiled cockpit sketch." loading="lazy"></button><figcaption>Spline-profiled cockpit sketch.</figcaption></figure><figure class="gal-item"><button class="zoom" type="button" data-src="assets/img/wind/ship-drawing.jpg" data-cap="Drawing sheet for the model." aria-label="Enlarge image"><img src="assets/img/wind/ship-drawing.jpg" alt="Drawing sheet for the model." loading="lazy"></button><figcaption>Drawing sheet for the model.</figcaption></figure></div></section>
+  <nav class="pn" aria-label="More projects"><a href="#brake" class="pn-prev"><span>Previous project</span>3D-Printed Brake Calipers</a><a href="#understand" class="pn-next"><span>Next project</span>The Under-Stand</a></nav>
+</article>
+<article class="project" id="view-understand" data-view="understand" hidden>
+  <a href="#projects" class="back">← All projects</a>
+  <header class="tb">
+    <div class="tb-title"><p class="eyebrow">Project 6 of 7</p><h2>The Under-Stand: Tandem Bike Kickstand</h2><ul class="tags"><li>Human-centered design</li><li>Statics</li><li>Prototyping</li></ul></div>
+    <dl class="tb-meta"><div><dt>Course</dt><dd>Design Thinking &amp; Communication</dd></div><div><dt>Client</dt><dd>Envision Unlimited</dd></div><div><dt>Team</dt><dd>4 students</dd></div><div><dt>My role</dt><dd>Documentation, drawings, purchasing</dd></div><div><dt>Date</dt><dd>Winter 2024</dd></div></dl>
+  </header>
+  <figure class="hero-media"><button class="zoom" type="button" data-src="assets/img/understand/understand-on-bike.jpg" data-cap="The Under-Stand prototype holding up one of Envision Unlimited’s tandem bikes." aria-label="Enlarge image"><img src="assets/img/understand/understand-on-bike.jpg" alt="The Under-Stand prototype holding up one of Envision Unlimited’s tandem bikes." loading="lazy"></button><figcaption>The Under-Stand prototype holding up one of Envision Unlimited’s tandem bikes.</figcaption></figure>
+  <div class="prose"><h2>Overview</h2>
+<p>Envision Unlimited runs tandem-bike rides for adults with intellectual and developmental disabilities. Their stock kickstands kept failing. Under the weight of a tandem and two riders they bent into an "M" shape or slid forward, some lasting only 1–2 rides at about $70 per replacement. The worst-placed one sat <strong>0.5 in from the rear rider's heel</strong> while pedaling. Our team designed the <strong>Under-Stand</strong>, a detachable, telescoping kickstand that mounts high under the front seat instead of low near the drivetrain.</p>
+<p><strong>My role:</strong> The whole team designed together. I led the <strong>documentation and technical drawings</strong>, including most of the final report and the build and use instructions, and managed <strong>purchasing</strong> as the team's cardholder.</p>
+<h2>Users &amp; Requirements</h2>
+<ul>
+<li><strong>Strength:</strong> support a loaded tandem without bending or sliding.</li>
+<li><strong>Low fine-motor demand:</strong> riders and volunteers must deploy it with simple motions. No small screws or tricky levers.</li>
+<li><strong>Out of the way:</strong> nothing within either rider's pedaling range.</li>
+<li><strong>Portable:</strong> stows on the bike in under 30 in, total weight under 10 lb.</li>
+<li><strong>Budget:</strong> under $150, and cheaper than repeatedly replacing kickstands.</li>
+</ul>
+<h2>Design</h2>
+<p><strong>The key idea: move the support point up.</strong> A stand anchored high on the frame resists tipping with much less force than a short stand near the ground. With the rod and both wheels touching the ground, the bike rests on a stable <strong>three-point base</strong>.</p>
+<p><strong>Statics check.</strong> We modeled the stand's ground reaction against tire friction. For the bike not to slide, μ·sin θ ≥ cos θ. We used the worst case, wet-tire friction (μ ≈ 0.4), and limited the stand to carrying no more than half the bike's weight. That gave a <strong>usable resting angle between 70° and 150°</strong>, which set the mounting angle.</p>
+<p><strong>Components:</strong></p>
+<ol>
+<li><strong>Telescoping aluminum tubes</strong> (1½ in and 1⅜ in OD, 0.038 in wall). They extend from 2 ft stowed to about 4 ft deployed, the same idea as a suitcase handle or mic stand.</li>
+<li><strong>B-split collar lock</strong> with a quarter-turn knob. We chose it over a lever clamp because it takes the least strength and dexterity.</li>
+<li><strong>PVC 45° wye connector</strong> that slides onto the seat post under the pilot's seat. Off-the-shelf pipe clamps only came in parallel or perpendicular, and the wye gave us the angle we needed.</li>
+<li><strong>Moldable 3M Scotchfil putty lining</strong> so the connector grips the seat post without rotating, with no permanent modification to the bike.</li>
+<li><strong>Rubber foot</strong> (μ ≈ 1.15) for grip on asphalt and gravel, plus a <strong>red warning band</strong> marking the tube's full extension.</li>
+</ol>
+<h2>Process</h2>
+<ul>
+<li><strong>Research and interviews:</strong> We interviewed program staff and riders, and observed the bikes at their storage facility. Nudging one bike tipped it straight over.</li>
+<li><strong>Mockups:</strong> We built a tripod stand and an under-seat stand, and laser-cut an acrylic model of the bike to test different mounting heights. The tripod needed two people (one to lift the bike), so we dropped it.</li>
+<li><strong>Design review:</strong> Reviewers flagged connector rotation, so we added the putty lining and the rubber foot.</li>
+<li><strong>Prototype:</strong> We Dremeled and bandsawed the PVC wye to fit the tube, bonded the foot with JB Weld, and wrote <strong>step-by-step build and use instructions</strong> so Envision could make more.</li>
+<li><strong>User testing:</strong> Program participants tested the prototype on a real tandem and confirmed it met the strength and ease-of-use requirements.</li>
+</ul>
+<h2>Outcomes</h2>
+<ul>
+<li>A working kickstand that <strong>keeps the tandem upright and stays clear of both riders</strong>.</li>
+<li><strong>Under the $150 budget</strong>, and buildable by anyone with basic shop tools.</li>
+<li><strong>Next steps:</strong> a purpose-made connector instead of a ground-down PVC fitting, smoother telescoping action, a lock against the tube collapsing unexpectedly, and long-term wear testing on gravel.</li>
+</ul></div>
+  <section class="gallery" aria-label="Figures"><h3 class="label">Figures</h3><div class="gal"><figure class="gal-item"><button class="zoom" type="button" data-src="assets/img/understand/force-analysis.jpg" data-cap="Free-body and friction analysis behind the 70–150° resting-angle range." aria-label="Enlarge image"><img src="assets/img/understand/force-analysis.jpg" alt="Free-body and friction analysis behind the 70–150° resting-angle range." loading="lazy"></button><figcaption>Free-body and friction analysis behind the 70–150° resting-angle range.</figcaption></figure><figure class="gal-item"><button class="zoom" type="button" data-src="assets/img/understand/deploying.jpg" data-cap="Deploying the stand." aria-label="Enlarge image"><img src="assets/img/understand/deploying.jpg" alt="Deploying the stand." loading="lazy"></button><figcaption>Deploying the stand.</figcaption></figure><figure class="gal-item"><button class="zoom" type="button" data-src="assets/img/understand/installing-connector.jpg" data-cap="Fitting the PVC wye connector to the seat post." aria-label="Enlarge image"><img src="assets/img/understand/installing-connector.jpg" alt="Fitting the PVC wye connector to the seat post." loading="lazy"></button><figcaption>Fitting the PVC wye connector to the seat post.</figcaption></figure><figure class="gal-item"><button class="zoom" type="button" data-src="assets/img/understand/collar-lock.jpg" data-cap="Quarter-turn collar lock: a low-dexterity way to set the length." aria-label="Enlarge image"><img src="assets/img/understand/collar-lock.jpg" alt="Quarter-turn collar lock: a low-dexterity way to set the length." loading="lazy"></button><figcaption>Quarter-turn collar lock: a low-dexterity way to set the length.</figcaption></figure><figure class="gal-item"><button class="zoom" type="button" data-src="assets/img/understand/concept-sketches.jpg" data-cap="Early concept sketches." aria-label="Enlarge image"><img src="assets/img/understand/concept-sketches.jpg" alt="Early concept sketches." loading="lazy"></button><figcaption>Early concept sketches.</figcaption></figure><figure class="gal-item"><button class="zoom" type="button" data-src="assets/img/understand/cutting-pvc.jpg" data-cap="Cutting the PVC connector to length." aria-label="Enlarge image"><img src="assets/img/understand/cutting-pvc.jpg" alt="Cutting the PVC connector to length." loading="lazy"></button><figcaption>Cutting the PVC connector to length.</figcaption></figure></div></section>
+  <nav class="pn" aria-label="More projects"><a href="#wind-tunnel" class="pn-prev"><span>Previous project</span>Smoke-Wire Wind Tunnel</a><a href="#handhug" class="pn-next"><span>Next project</span>The HandHug</a></nav>
+</article>
+<article class="project" id="view-handhug" data-view="handhug" hidden>
+  <a href="#projects" class="back">← All projects</a>
+  <header class="tb">
+    <div class="tb-title"><p class="eyebrow">Project 7 of 7</p><h2>The HandHug: Protective Hand Wrap</h2><ul class="tags"><li>Human-centered design</li><li>Assistive technology</li><li>Sewing</li></ul></div>
+    <dl class="tb-meta"><div><dt>Course</dt><dd>Design Thinking &amp; Communication</dd></div><div><dt>Client</dt><dd>School occupational therapist</dd></div><div><dt>Team</dt><dd>4 students</dd></div><div><dt>My role</dt><dd>Design &amp; Finances Lead</dd></div><div><dt>Date</dt><dd>Spring 2024</dd></div></dl>
+  </header>
+  <figure class="hero-media"><button class="zoom" type="button" data-src="assets/img/handhug/handhug-pair.jpg" data-cap="Two finished HandHugs: terry cloth wraps with snap-on silicone chewies." aria-label="Enlarge image"><img src="assets/img/handhug/handhug-pair.jpg" alt="Two finished HandHugs: terry cloth wraps with snap-on silicone chewies." loading="lazy"></button><figcaption>Two finished HandHugs: terry cloth wraps with snap-on silicone chewies.</figcaption></figure>
+  <div class="prose"><h2>Overview</h2>
+<p>Our user was a medically fragile toddler with polymicrogyria, a rare brain condition. He is nonverbal, breathes through a tracheostomy, and has no voluntary finger movement. His hand was in his mouth <strong>85–90% of the day</strong>, and constant saliva and biting had left the back of his hand cracked and callused. Mitts, splints, and teethers had all failed: they either restricted motion or still let his hand get wet.</p>
+<p>The catch: hand-to-mouth contact is one of his main ways of soothing himself and exploring the world. So we had to <strong>protect his hand without taking that away</strong>.</p>
+<p><strong>My role (Design &amp; Finances Lead):</strong> I <strong>sewed every hand wrap</strong> (wraps, Velcro, and snaps) and <strong>managed the $150 budget</strong>. I led the design discussions, while the team made material and design decisions together.</p>
+<h2>Requirements</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Protection (client)</th>
+<th>Satisfaction (user)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Keep the injured area dry and prevent further damage</td>
+<td>Let the soothing habit continue</td>
+</tr>
+<tr>
+<td>Full finger and wrist range of motion</td>
+<td>Don't restrict or upset him</td>
+</tr>
+<tr>
+<td>Mouth-safe, no choking hazards, nowhere near the trach</td>
+<td>Comfortable (he dislikes cold)</td>
+</tr>
+<tr>
+<td>Easy for caregivers to put on, take off, and wash</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<h2>Testing Drove the Design</h2>
+<p>We brought three types of mockup to user testing: <strong>a cloth hand wrap, a fitted mitt, and two protective bibs</strong>.</p>
+<ul>
+<li>The <strong>bib</strong> blocked contact entirely, which was overkill for a localized problem, and it would have to go over his existing bib.</li>
+<li>The <strong>mitt</strong> was hard to put on, slipped off, and he stopped bringing his hand to his mouth at all. That meant it was taking away the soothing behavior.</li>
+<li>The <strong>wrap</strong> stayed put and left his fingers free, and something unexpected happened. <strong>He ignored his exposed fingers and chewed the wrap's knot instead.</strong> At one point he used his other hand to push the knot into his mouth.</li>
+</ul>
+<p>That accidental finding became the design: <strong>give him something better to chew than his hand.</strong></p>
+<h2>Design</h2>
+<p>The <strong>HandHug</strong> is a soft wrap that covers the knuckles, with a detachable chewy toy where the knot used to be.</p>
+<ul>
+<li><strong>Terry cloth wrap:</strong> soft, absorbent, and machine-washable. We chose it over waterproof fabrics, which feel uncomfortable on skin, and over chamois.</li>
+<li><strong>Food-grade silicone chewy:</strong> durable 70A silicone, non-toxic, and textured for oral stimulation. We cut it to <strong>2.75 in to match his knuckle span</strong> and <strong>halved its thickness</strong> so it bends with the hand.</li>
+<li><strong>Velcro closure:</strong> replaced the tied knot, which had frustrated him during testing, so caregivers can put it on and take it off in seconds.</li>
+<li><strong>Sew-on snaps:</strong> let the chewy and wrap separate for washing, which the client needed given his medical risk. They're strong enough to survive arm flailing but easy for an adult to undo.</li>
+</ul>
+<h2>Outcomes</h2>
+<ul>
+<li>The client said it could fit <strong>seamlessly into her daily routine</strong>. We couldn't test the final version on the user because he was hospitalized for seizures during the final weeks.</li>
+<li><strong>Under the $150 budget.</strong></li>
+<li><strong>Next steps:</strong> a quantitative moisture test (a dropper test on the fabric), interchangeable chewies without removing the wrap, a more adjustable fit as he grows, and longer user-testing sessions.</li>
+</ul>
+<h2>What I Learned</h2>
+<p>When your user can't talk, <strong>observation is everything</strong>. The best feature of this design came from noticing an unexpected behavior during testing, not from our original concept.</p></div>
+  <section class="gallery" aria-label="Figures"><h3 class="label">Figures</h3><div class="gal"><figure class="gal-item"><button class="zoom" type="button" data-src="assets/img/handhug/handhug-on-hand.jpg" data-cap="Worn on a hand (adult model)." aria-label="Enlarge image"><img src="assets/img/handhug/handhug-on-hand.jpg" alt="Worn on a hand (adult model)." loading="lazy"></button><figcaption>Worn on a hand (adult model).</figcaption></figure><figure class="gal-item"><button class="zoom" type="button" data-src="assets/img/handhug/chewy-sketch.jpg" data-cap="Chewy dimensions, sized to the user’s knuckle span." aria-label="Enlarge image"><img src="assets/img/handhug/chewy-sketch.jpg" alt="Chewy dimensions, sized to the user’s knuckle span." loading="lazy"></button><figcaption>Chewy dimensions, sized to the user’s knuckle span.</figcaption></figure><figure class="gal-item"><button class="zoom" type="button" data-src="assets/img/handhug/wraps-snaps.jpg" data-cap="Wraps with sewn snaps and Velcro closures." aria-label="Enlarge image"><img src="assets/img/handhug/wraps-snaps.jpg" alt="Wraps with sewn snaps and Velcro closures." loading="lazy"></button><figcaption>Wraps with sewn snaps and Velcro closures.</figcaption></figure><figure class="gal-item"><button class="zoom" type="button" data-src="assets/img/handhug/snap-detail.jpg" data-cap="Snap connection between wrap and chewy." aria-label="Enlarge image"><img src="assets/img/handhug/snap-detail.jpg" alt="Snap connection between wrap and chewy." loading="lazy"></button><figcaption>Snap connection between wrap and chewy.</figcaption></figure></div></section>
+  <nav class="pn" aria-label="More projects"><a href="#understand" class="pn-prev"><span>Previous project</span>The Under-Stand</a><a href="#projects" class="pn-next"><span>Back to</span>All projects</a></nav>
+</article>
+</main>
+
+<footer>
+  <div class="wrap"><span>© Sujee Rubio · Northwestern University, Class of 2027</span><span>sujeerubio2027@u.northwestern.edu</span></div>
+</footer>
+
+<dialog class="lb" id="lightbox" aria-label="Enlarged figure">
+  <button type="button" id="lb-close">Close</button>
+  <img id="lb-img" alt="">
+  <p id="lb-cap"></p>
+</dialog>
+
+<script>
+(function () {
+  var ids = ["supersonic", "rocket", "shaft", "brake", "wind-tunnel", "understand", "handhug", "general-atomics"];
+  var home = document.getElementById('home');
+  var views = document.getElementById('project-views');
+  function route() {
+    var h = (location.hash || '').slice(1);
+    var isView = ids.indexOf(h) !== -1;
+    home.hidden = isView;
+    views.hidden = !isView;
+    document.querySelectorAll('.project').forEach(function (a) {
+      var on = a.getAttribute('data-view') === h;
+      a.hidden = !on;
+      a.querySelectorAll('video').forEach(function (v) { if (on) { v.play && v.play().catch(function(){}); } else { v.pause && v.pause(); } });
+    });
+    if (isView) {
+      window.scrollTo(0, 0);
+      var t = document.querySelector('#view-' + h + ' h2');
+      document.title = (t ? t.textContent + ' · ' : '') + 'Sujee Rubio Portfolio';
+    } else {
+      document.title = 'Sujee Rubio Portfolio';
+      if (h) { var el = document.getElementById(h); if (el) el.scrollIntoView(); }
+    }
+  }
+  window.addEventListener('hashchange', route);
+  route();
+
+  var chips = document.querySelectorAll('.chip');
+  chips.forEach(function (c) {
+    c.addEventListener('click', function () {
+      var f = c.getAttribute('data-f');
+      chips.forEach(function (o) { o.setAttribute('aria-pressed', String(o === c)); });
+      document.querySelectorAll('.card').forEach(function (card) {
+        card.hidden = !(f === 'all' || card.getAttribute('data-cats').split(' ').indexOf(f) !== -1);
+      });
+    });
+  });
+
+  var copyBtn = document.getElementById('copy-email');
+  copyBtn.addEventListener('click', function () {
+    var txt = document.getElementById('email-addr').textContent;
+    var done = function () { copyBtn.textContent = 'Copied'; setTimeout(function () { copyBtn.textContent = 'Copy'; }, 1600); };
+    var fallback = function () {
+      var r = document.createRange(); r.selectNodeContents(document.getElementById('email-addr'));
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); copyBtn.textContent = 'Selected';
+    };
+    try { navigator.clipboard.writeText(txt).then(done, fallback); } catch (e) { fallback(); }
+  });
+
+  var lb = document.getElementById('lightbox');
+  document.addEventListener('click', function (e) {
+    var z = e.target.closest && e.target.closest('.zoom');
+    if (!z) return;
+    document.getElementById('lb-img').src = z.getAttribute('data-src');
+    document.getElementById('lb-img').alt = z.getAttribute('data-cap');
+    document.getElementById('lb-cap').textContent = z.getAttribute('data-cap');
+    if (lb.showModal) lb.showModal();
+  });
+  document.getElementById('lb-close').addEventListener('click', function () { lb.close(); });
+  lb.addEventListener('click', function (e) { if (e.target === lb) lb.close(); });
+})();
+</script>
+
+</body>
+</html>
